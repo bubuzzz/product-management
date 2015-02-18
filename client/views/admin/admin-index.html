@@ -1,0 +1,8 @@
+<template id="admin-index" name="adminIndex">
+  <input type="button" name="add-product" value="Add Product" id="add-product">
+  <ul>
+  {{#each products}}
+    <li>{{name}}</li>
+  {{/each}}
+  </ul>
+</template>
