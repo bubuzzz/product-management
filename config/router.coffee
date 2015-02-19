@@ -20,6 +20,8 @@ Router.map ->
       'sidebar' : to: 'sidebar'
     onAfterAction: ->
       document.title = "#{title} Home Page"
+    data: ->
+      {homeSelected: 'active'}
 
   @route 'about',
     path: '/about'
@@ -28,6 +30,8 @@ Router.map ->
       'footer': to: 'footer'
     onAfterAction: ->
       document.title = "#{title} About Us"
+    data: ->
+      {aboutSelected: 'active'}
 
   @route 'contact',
     path: '/contact'
@@ -36,7 +40,9 @@ Router.map ->
       'footer': to: 'footer'
     onAfterAction: ->
       document.title = "#{title} Contact Us"
-
+    data: ->
+      {contactSelected: 'active'}
+      
   #
   # Admin pages
   #
