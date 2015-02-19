@@ -42,7 +42,7 @@ Router.map ->
       document.title = "#{title} Contact Us"
     data: ->
       {contactSelected: 'active'}
-      
+
   #
   # Admin pages
   #
@@ -52,4 +52,7 @@ Router.map ->
       document.title = "#{title} Login"
 
   @route 'admin-index', path: '/admin/index'
-  @route 'admin-add-product', path: '/admin/product/add'
+  @route 'admin-add-product',
+    path: '/admin/product/add'
+    onAfterAction: ->
+      document.title = "#{title} Add Product"

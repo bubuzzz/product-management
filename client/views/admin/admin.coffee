@@ -10,13 +10,17 @@ Template.adminLogin.events
       Router.go '/admin/index'
 
 Template.adminIndex.helpers
-  products: ->  
+  products: ->
     Product.find().fetch()
 
 Template.adminIndex.events
   'click #add-product': ->
     Router.go 'admin-add-product'
 
+Template.adminAddProduct.helpers
+  categories: ->
+    Category.find({})
+    
 Template.adminAddProduct.events
   'submit form': (event)->
     event.preventDefault()
