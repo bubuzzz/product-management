@@ -1,5 +1,6 @@
 <template id="admin-index" name="adminIndex">
-  <input type="button" name="add-product" value="Add Product" id="add-product">
+  <a class="btn btn-info" href="{{ pathFor 'admin-add-product' }}">Add Product</a>
+
   <ul>
   {{#each products}}
     <li>{{name}}</li>

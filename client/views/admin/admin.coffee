@@ -13,10 +13,6 @@ Template.adminIndex.helpers
   products: ->
     Product.find().fetch()
 
-Template.adminIndex.events
-  'click #add-product': ->
-    Router.go 'admin-add-product'
-
 #
 # Product
 #
@@ -35,21 +31,30 @@ Template.adminAddProduct.events
 
     categoryArr.push category.value for category in categories
 
-    console.log categoryArr
-
     Product.create name: name, short_desc: shortDesc, categories: categoryArr
+    Router.go 'admin-index'
 
 #
 # Category
 #
 Template.adminAddCategory.events
- 'submit form': (event) ->
-   event.preventDefault()
-   name = event.target.categoryName.value
-   shortDesc = event.target.categoryShortDesc.value
+  'submit form': (event) ->
+    event.preventDefault()
+    name = event.target.categoryName.value
+    shortDesc = event.target.categoryShortDesc.value
+    categories = event.target.categories.selectedOptions
 
-   Category.create name: name, short_desc: shortDesc
+    categoryArr = []
+    categoryArr.push category.value for category in categories
+
+    Category.create name: name, short_desc: shortDesc, categories: categoryArr
+
+    Router.go 'admin-category'
+
+Template.adminAddCategory.helpers
+  categories: ->
+    Category.find({})
 
 Template.adminCategory.helpers
- categories: ->
-   Category.find({})
+  categories: ->
+    Category.find({})

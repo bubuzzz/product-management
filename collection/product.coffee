@@ -1,5 +1,5 @@
 class @Product extends Minimongoid
-  @_collection: new Meteor.Collection('product')
+  @_collection: new Meteor.Collection 'product'
 
 
 # Product.create

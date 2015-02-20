@@ -51,7 +51,10 @@ Router.map ->
     onAfterAction: ->
       document.title = "#{title} Login"
 
-  @route 'admin-index', path: '/admin/index'
+  @route 'admin-index',
+    path: '/admin/index'
+    onAfterAction: ->
+      document.title = "#{title} Product Managment"
 
   @route 'admin-add-product',
     path: '/admin/product/add'
