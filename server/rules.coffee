@@ -7,3 +7,12 @@ Product._collection.allow
 
   remove: ->
     true
+
+
+Category._collection.allow
+  insert: ->
+    true
+  update: ->
+    true
+  remove: ->
+    true
