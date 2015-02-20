@@ -20,9 +20,12 @@ Template.adminIndex.events
 Template.adminAddProduct.helpers
   categories: ->
     Category.find({})
-    
+
 Template.adminAddProduct.events
   'submit form': (event)->
     event.preventDefault()
     name = event.target.productName.value
-    Product.create name: name
+    shortDesc = event.target.productShortDesc.value
+    categories = event.target.categories.selectedOptions
+
+    Product.create name: name, short_desc: shortDesc
