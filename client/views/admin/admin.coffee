@@ -25,13 +25,9 @@ Template.adminAddProduct.events
     event.preventDefault()
     name = event.target.productName.value
     shortDesc = event.target.productShortDesc.value
-    categories = event.target.categories.selectedOptions
+    categoryId = event.target.categories.value
 
-    categoryArr = []
-
-    categoryArr.push category.value for category in categories
-
-    Product.create name: name, short_desc: shortDesc, categories: categoryArr
+    Product.create name: name, short_desc: shortDesc, category_id: categoryId
     Router.go 'admin-index'
 
 #
