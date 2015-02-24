@@ -3,14 +3,14 @@ title = "Product Management | "
 #
 # Layout Controllers
 #
-AdminController = RouteController.extend (
+AdminBaseController = RouteController.extend (
   layoutTemplate: 'admin-layout'
   yieldTemplates:
     'admin-navbar': to: 'admin-navbar'
     'admin-header': to: 'admin-header'
 )
 
-ClientController = RouteController.extend (
+ClientBaseController = RouteController.extend (
   layoutTemplate: 'layout'
   yieldTemplates:
     'navbar'  : to: 'navbar'
@@ -18,12 +18,19 @@ ClientController = RouteController.extend (
     'sidebar' : to: 'sidebar'
 )
 
-ClientNoSidebarController = ClientController.extend (
+ClientNoSidebarController = ClientBaseController.extend (
   yieldTemplates:
     'navbar'  : to: 'navbar'
     'footer'  : to: 'footer'
 )
 
+ClientBannerController = ClientBaseController.extend (
+  yieldTemplates:
+    'navbar'  : to: 'navbar'
+    'footer'  : to: 'footer'
+    'banner'  : to: 'banner'
+    'sidebar' : to: 'sidebar'
+)
 #
 # Router mappings
 #
@@ -34,7 +41,7 @@ Router.map ->
   #
   @route 'home',
     path: '/'
-    controller: ClientController
+    controller: ClientBannerController
     onAfterAction: ->
       document.title = "#{title} Home Page"
     data: ->
@@ -96,5 +103,3 @@ Router.map ->
     controller: AdminController
     onAfterAction: ->
       document.title = "#{title} Add Category"
-
-  
