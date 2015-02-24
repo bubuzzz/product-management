@@ -9,3 +9,4 @@ coffeescript
 iron:router
 mrt:minimongoid
 less
+underscore

@@ -6,8 +6,8 @@ title = "Product Management | "
 AdminBaseController = RouteController.extend (
   layoutTemplate: 'admin-layout'
   yieldTemplates:
-    'admin-navbar': to: 'admin-navbar'
-    'admin-header': to: 'admin-header'
+    'admin-navbar'  : to: 'admin-navbar'
+    'admin-header'  : to: 'admin-header'
 )
 
 ClientBaseController = RouteController.extend (
@@ -15,22 +15,21 @@ ClientBaseController = RouteController.extend (
   yieldTemplates:
     'navbar'  : to: 'navbar'
     'footer'  : to: 'footer'
-    'sidebar' : to: 'sidebar'
 )
 
-ClientNoSidebarController = ClientBaseController.extend (
-  yieldTemplates:
-    'navbar'  : to: 'navbar'
-    'footer'  : to: 'footer'
+ClientBannerWithSidebarController = ClientBaseController.extend (
+  yieldTemplates: _.extend {
+      'banner'  : to: 'banner'
+      'sidebar' : to: 'sidebar'
+    }, ClientBaseController::yieldTemplates
 )
 
-ClientBannerController = ClientBaseController.extend (
-  yieldTemplates:
-    'navbar'  : to: 'navbar'
-    'footer'  : to: 'footer'
-    'banner'  : to: 'banner'
-    'sidebar' : to: 'sidebar'
+ClientNoBannerWithSidebarController = ClientBaseController.extend (
+  yieldTemplates: _.extend {
+      'sidebar' : to: 'sidebar'
+    }, ClientBaseController::yieldTemplates
 )
+
 #
 # Router mappings
 #
@@ -41,17 +40,23 @@ Router.map ->
   #
   @route 'home',
     path: '/'
-    controller: ClientBannerController
+    controller: ClientBannerWithSidebarController
     onAfterAction: ->
       document.title = "#{title} Home Page"
     data: ->
       {homeSelected: 'active'}
 
-
+  @route 'product',
+    path: '/product'
+    controller: ClientNoBannerWithSidebarController
+    onAfterAction: ->
+      document.title = "#{{title}} Product"
+    data: ->
+      {productSelected: 'active'}
 
   @route 'about',
     path: '/about'
-    controller: ClientNoSidebarController
+    controller: ClientBaseController
     onAfterAction: ->
       document.title = "#{title} About Us"
     data: ->
@@ -59,7 +64,7 @@ Router.map ->
 
   @route 'contact',
     path: '/contact'
-    controller: ClientNoSidebarController
+    controller: ClientBaseController
     onAfterAction: ->
       document.title = "#{title} Contact Us"
     data: ->
@@ -75,31 +80,31 @@ Router.map ->
 
   @route 'admin-dashboard',
     path: '/admin'
-    controller: AdminController
+    controller: AdminBaseController
     onAfterAction: ->
       document.title = "#{title} Dashboard"
 
   @route 'admin-product',
     path: '/admin/product'
-    controller: AdminController
+    controller: AdminBaseController
     onAfterAction: ->
       document.title = "#{title} Product Management"
 
 
   @route 'admin-add-product',
     path: '/admin/product/add'
-    controller: AdminController
+    controller: AdminBaseController
     onAfterAction: ->
       document.title = "#{title} Add Product"
 
   @route 'admin-category',
     path: '/admin/category'
-    controller: AdminController
+    controller: AdminBaseController
     onAfterAction: ->
       document.title = "#{title} Category Management"
 
   @route 'admin-add-category',
     path: '/admin/category/add'
-    controller: AdminController
+    controller: AdminBaseController
     onAfterAction: ->
       document.title = "#{title} Add Category"
