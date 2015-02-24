@@ -1,12 +1,32 @@
 title = "Product Management | "
 
+#
+# Layout Controllers
+#
+AdminController = RouteController.extend (
+  layoutTemplate: 'admin-layout'
+  yieldTemplates:
+    'admin-navbar': to: 'admin-navbar'
+    'admin-header': to: 'admin-header'
+)
 
-#
-# Route Mappings
-#
-Router.configure
+ClientController = RouteController.extend (
   layoutTemplate: 'layout'
+  yieldTemplates:
+    'navbar'  : to: 'navbar'
+    'footer'  : to: 'footer'
+    'sidebar' : to: 'sidebar'
+)
 
+ClientNoSidebarController = ClientController.extend (
+  yieldTemplates:
+    'navbar'  : to: 'navbar'
+    'footer'  : to: 'footer'
+)
+
+#
+# Router mappings
+#
 Router.map ->
 
   #
@@ -14,20 +34,17 @@ Router.map ->
   #
   @route 'home',
     path: '/'
-    yieldTemplates:
-      'navbar'  : to: 'navbar'
-      'footer'  : to: 'footer'
-      'sidebar' : to: 'sidebar'
+    controller: ClientController
     onAfterAction: ->
       document.title = "#{title} Home Page"
     data: ->
       {homeSelected: 'active'}
 
+
+
   @route 'about',
     path: '/about'
-    yieldTemplates:
-      'navbar': to: 'navbar'
-      'footer': to: 'footer'
+    controller: ClientNoSidebarController
     onAfterAction: ->
       document.title = "#{title} About Us"
     data: ->
@@ -35,9 +52,7 @@ Router.map ->
 
   @route 'contact',
     path: '/contact'
-    yieldTemplates:
-      'navbar': to: 'navbar'
-      'footer': to: 'footer'
+    controller: ClientNoSidebarController
     onAfterAction: ->
       document.title = "#{title} Contact Us"
     data: ->
@@ -53,20 +68,24 @@ Router.map ->
 
   @route 'admin-index',
     path: '/admin/index'
+    controller: AdminController
     onAfterAction: ->
       document.title = "#{title} Product Managment"
 
   @route 'admin-add-product',
     path: '/admin/product/add'
+    controller: AdminController
     onAfterAction: ->
       document.title = "#{title} Add Product"
 
   @route 'admin-add-category',
     path: '/admin/category/add'
+    controller: AdminController
     onAfterAction: ->
       document.title = "#{title} Add Category"
 
   @route 'admin-category',
     path: '/admin/category'
+    controller: AdminController
     onAfterAction: ->
       document.title = "#{title} Category Management"

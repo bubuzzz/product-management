@@ -1,9 +1,17 @@
 <template id="admin-index" name="adminIndex">
-  <a class="btn btn-info" href="{{ pathFor 'admin-add-product' }}">Add Product</a>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Dashboard</h1>
 
-  <ul>
-  {{#each products}}
-    <li>{{name}}</li>
-  {{/each}}
-  </ul>
+    <div class="row">
+
+      <a class="btn btn-info" href="{{ pathFor 'admin-add-product' }}">Add Product</a>
+
+      <ul>
+      {{#each products}}
+        <li>{{name}}</li>
+      {{/each}}
+      </ul>
+
+    </div>
+  </div>
 </template>
