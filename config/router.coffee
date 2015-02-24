@@ -19,15 +19,15 @@ ClientBaseController = RouteController.extend (
 
 ClientBannerWithSidebarController = ClientBaseController.extend (
   yieldTemplates: _.extend {
-      'banner'  : to: 'banner'
-      'sidebar' : to: 'sidebar'
-    }, ClientBaseController::yieldTemplates
+    'banner'  : to: 'banner'
+    'sidebar' : to: 'sidebar'
+  }, ClientBaseController::yieldTemplates
 )
 
 ClientNoBannerWithSidebarController = ClientBaseController.extend (
   yieldTemplates: _.extend {
-      'sidebar' : to: 'sidebar'
-    }, ClientBaseController::yieldTemplates
+    'sidebar' : to: 'sidebar'
+  }, ClientBaseController::yieldTemplates
 )
 
 #
@@ -50,7 +50,7 @@ Router.map ->
     path: '/product'
     controller: ClientNoBannerWithSidebarController
     onAfterAction: ->
-      document.title = "#{{title}} Product"
+      document.title = "#{title} Product"
     data: ->
       {productSelected: 'active'}
 
@@ -89,7 +89,6 @@ Router.map ->
     controller: AdminBaseController
     onAfterAction: ->
       document.title = "#{title} Product Management"
-
 
   @route 'admin-add-product',
     path: '/admin/product/add'

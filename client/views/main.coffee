@@ -1,16 +1,22 @@
 Meteor.subscribe("allCategories")
 Meteor.subscribe("newProducts")
 
+#
+# helpers
+#
+getProductBasedOnCategory = (categoryId) ->
+  if categoryId == undefined
+    Product.find({})
+  else
+    Product.find({category_id: categoryId})
+
+#
+# Template controllers
+#
 Template.home.helpers
   products: ->
     categoryId = Session.get 'selectedCategory'
-
-    console.log categoryId
-
-    if categoryId == undefined
-      Product.find({})
-    else
-      Product.find({category_id: categoryId})
+    getProductBasedOnCategory categoryId
 
 Template.sidebar.helpers
   categories: ->
@@ -19,3 +25,8 @@ Template.sidebar.helpers
 Template.sidebar.events
  'click .category': ->
    Session.set 'selectedCategory', @._id
+
+Template.product.helpers
+  products: ->
+    categoryId = Session.get 'selectedCategory'
+    getProductBasedOnCategory categoryId
