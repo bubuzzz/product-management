@@ -66,11 +66,18 @@ Router.map ->
     onAfterAction: ->
       document.title = "#{title} Login"
 
-  @route 'admin-index',
-    path: '/admin/index'
+  @route 'admin-dashboard',
+    path: '/admin'
     controller: AdminController
     onAfterAction: ->
-      document.title = "#{title} Product Managment"
+      document.title = "#{title} Dashboard"
+
+  @route 'admin-product',
+    path: '/admin/product'
+    controller: AdminController
+    onAfterAction: ->
+      document.title = "#{title} Product Management"
+
 
   @route 'admin-add-product',
     path: '/admin/product/add'
@@ -78,14 +85,16 @@ Router.map ->
     onAfterAction: ->
       document.title = "#{title} Add Product"
 
+  @route 'admin-category',
+    path: '/admin/category'
+    controller: AdminController
+    onAfterAction: ->
+      document.title = "#{title} Category Management"
+
   @route 'admin-add-category',
     path: '/admin/category/add'
     controller: AdminController
     onAfterAction: ->
       document.title = "#{title} Add Category"
 
-  @route 'admin-category',
-    path: '/admin/category'
-    controller: AdminController
-    onAfterAction: ->
-      document.title = "#{title} Category Management"
+  
