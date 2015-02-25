@@ -26,6 +26,9 @@ Template.sidebar.events
  'click .category': ->
    Session.set 'selectedCategory', @._id
 
+ 'click .all-categories': ->
+   Session.set 'selectedCategory', undefined
+
 Template.product.helpers
   products: ->
     categoryId = Session.get 'selectedCategory'
