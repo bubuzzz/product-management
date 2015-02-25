@@ -7,11 +7,7 @@ Template.adminLogin.events
     password = event.target.password.value
 
     if email == 'admin@gmail.com' and password == 'admin'
-      Router.go '/admin/index'
-
-Template.adminIndex.helpers
-  products: ->
-    Product.find().fetch()
+      Router.go 'admin-dashboard'
 
 #
 # Product
@@ -28,7 +24,7 @@ Template.adminAddProduct.events
     categoryId = event.target.categories.value
 
     Product.create name: name, short_desc: shortDesc, category_id: categoryId
-    Router.go 'admin-index'
+    Router.go 'admin-product'
 
 #
 # Category

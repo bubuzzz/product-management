@@ -24,10 +24,14 @@ Template.sidebar.helpers
 
 Template.sidebar.events
  'click .category': ->
-   Session.set 'selectedCategory', @._id
+  #  Session.set 'selectedCategory', @._id
+   Router.go 'product'
 
  'click .all-categories': ->
-   Session.set 'selectedCategory', undefined
+
+   Router.go 'product'
+   console.log 'alll'
+  #  Session.set 'selectedCategory', undefined
 
 Template.product.helpers
   products: ->
