@@ -47,8 +47,11 @@ Router.map ->
       {homeSelected: 'active'}
 
   @route 'product',
-    path: '/product'
+    path: "/product/category/:_category"
     controller: ClientNoBannerWithSidebarController
+    waitOn: ->
+      console.log @params._category
+      @subscribe '_category', @params._category
     onAfterAction: ->
       document.title = "#{title} Product"
     data: ->

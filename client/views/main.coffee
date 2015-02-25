@@ -22,17 +22,6 @@ Template.sidebar.helpers
   categories: ->
     Category.find({})
 
-Template.sidebar.events
- 'click .category': ->
-  #  Session.set 'selectedCategory', @._id
-   Router.go 'product'
-
- 'click .all-categories': ->
-
-   Router.go 'product'
-   console.log 'alll'
-  #  Session.set 'selectedCategory', undefined
-
 Template.product.helpers
   products: ->
     categoryId = Session.get 'selectedCategory'
