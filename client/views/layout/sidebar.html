@@ -1,5 +1,17 @@
 <template id="sidebar" name="sidebar">
-  
+  {{# if currentUser}}
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="shopping-cart">
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          <h4 class="list-group-item-heading">Your current cart</h4>
+          <p class="list-group-item-text">
+            Item: 0
+            Total Price: 0$
+          </p>
+        </a>
+      </div>
+    </div>
+  {{/if}}
   <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
     <div class="list-group">
         <a href="{{ pathFor 'product' _category='all'}}" class="list-group-item all-categories">All</a>

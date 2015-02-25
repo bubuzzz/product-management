@@ -10,3 +10,5 @@ iron:router
 mrt:minimongoid
 less
 underscore
+accounts-ui
+accounts-password
