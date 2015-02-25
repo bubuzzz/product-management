@@ -5,7 +5,7 @@ Meteor.subscribe("newProducts")
 # helpers
 #
 getProductBasedOnCategory = (categoryId) ->
-  if categoryId == undefined
+  if categoryId == 'all' or category == undefined
     Product.find({})
   else
     Product.find({category_id: categoryId})
@@ -15,14 +15,8 @@ getProductBasedOnCategory = (categoryId) ->
 #
 Template.home.helpers
   products: ->
-    categoryId = Session.get 'selectedCategory'
-    getProductBasedOnCategory categoryId
+    getProductBasedOnCategory 'all'
 
 Template.sidebar.helpers
   categories: ->
     Category.find({})
-
-Template.product.helpers
-  products: ->
-    categoryId = Session.get 'selectedCategory'
-    getProductBasedOnCategory categoryId

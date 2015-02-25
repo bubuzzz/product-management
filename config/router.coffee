@@ -51,10 +51,22 @@ Router.map ->
     controller: ClientNoBannerWithSidebarController
     onAfterAction: ->
       document.title = "#{title} Product"
-    data: -> {
-        productSelected: 'active',
-        products: Product.find({category_id: @params._category})
-    }
+    data: ->
+      products = undefined
+
+      console.log @params._category
+
+      if @params._category != 'all'
+        products = Product.find {category_id: @params._category}
+      else
+        products = Product.find {}
+
+      console.log products
+
+      {
+        productSelected: 'active'
+        products: products
+      }
 
   @route 'product-detail',
     path: '/product/detail/:_id'
