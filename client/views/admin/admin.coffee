@@ -23,7 +23,7 @@ Template.adminAddProduct.events
     shortDesc = event.target.productShortDesc.value
     categoryId = event.target.categories.value
 
-    Product.create name: name, short_desc: shortDesc, category_id: categoryId
+    Meteor.call 'insertProduct', name, shortDesc, categoryId
     Router.go 'admin-product'
 
 #
@@ -39,7 +39,7 @@ Template.adminAddCategory.events
     categoryArr = []
     categoryArr.push category.value for category in categories
 
-    Category.create name: name, short_desc: shortDesc, categories: categoryArr
+    Meteor.call 'insertCategory', name, shortDesc, categoryArr
 
     Router.go 'admin-category'
 
