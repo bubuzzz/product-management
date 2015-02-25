@@ -49,13 +49,22 @@ Router.map ->
   @route 'product',
     path: "/product/category/:_category"
     controller: ClientNoBannerWithSidebarController
-    waitOn: ->
-      console.log @params._category
-      @subscribe '_category', @params._category
     onAfterAction: ->
       document.title = "#{title} Product"
-    data: ->
-      {productSelected: 'active'}
+    data: -> {
+        productSelected: 'active',
+        products: Product.find({category_id: @params._category})
+    }
+
+  @route 'product-detail',
+    path: '/product/detail/:_id'
+    controller:ClientNoBannerWithSidebarController
+    onAfterAction: ->
+      document.title = "#{title} Product detail"
+    data: -> {
+      productSelected: 'active'
+      product: Product.first({_id: @params._id})
+    }
 
   @route 'about',
     path: '/about'
