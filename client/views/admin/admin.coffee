@@ -12,6 +12,10 @@ Template.adminLogin.events
 #
 # Product
 #
+Template.adminProduct.helpers
+  products: ->
+    Product.find({})
+    
 Template.adminAddProduct.helpers
   categories: ->
     Category.find({})
@@ -39,7 +43,8 @@ Template.adminAddCategory.events
     categoryArr = []
     categoryArr.push category.value for category in categories
 
-    Meteor.call 'insertCategory', name, shortDesc, categoryArr
+    Meteor.call 'insertCategory', name, shortDesc, categoryArr, (event, result) ->
+      console.log result.errors
 
     Router.go 'admin-category'
 
