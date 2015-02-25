@@ -43,8 +43,10 @@ Router.map ->
     controller: ClientBannerWithSidebarController
     onAfterAction: ->
       document.title = "#{title} Home Page"
-    data: ->
-      {homeSelected: 'active'}
+    data: -> {
+      homeSelected: 'active',
+      products: Product.find {}
+    }
 
   @route 'product',
     path: "/product/category/:_category"
@@ -54,14 +56,10 @@ Router.map ->
     data: ->
       products = undefined
 
-      console.log @params._category
-
       if @params._category != 'all'
         products = Product.find {category_id: @params._category}
       else
         products = Product.find {}
-
-      console.log products
 
       {
         productSelected: 'active'

@@ -3,7 +3,7 @@
   <p class="pull-right visible-xs">
     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
   </p>
-  
+
   {{>yield region="banner"}}
 
   <div class="row">
@@ -11,7 +11,7 @@
     <div class="col-xs-6 col-lg-4">
       <h2>{{name}}</h2>
       <p>{{short_desc}}</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <p><a class="btn btn-default" href="{{ pathFor 'product-detail' _id=_id }}" role="button">View details &raquo;</a></p>
     </div><!--/.col-xs-6.col-lg-4-->
     {{/each}}
   </div><!--/row-->
