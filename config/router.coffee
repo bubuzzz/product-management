@@ -108,6 +108,12 @@ Router.map ->
     data: ->
       {contactSelected: 'active'}
 
+  @route 'cart',
+    path: '/cart'
+    controller: ClientNoBannerWithSidebarController
+    onAfterAction: ->
+      document.title = "#{title} Your Cart"
+
   #
   # Admin pages
   #
