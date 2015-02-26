@@ -1,9 +1,11 @@
 title = "Product Management | "
 
 Router.before ( ->
-  unless Meteor.userId()
+  if  !Meteor.userId()
     @redirect 'userUnauthorized'
     do @stop
+  else
+    do @next
   ), except: ['userUnauthorized', 'home', 'product', 'contact', 'product-detail']
 
 #
