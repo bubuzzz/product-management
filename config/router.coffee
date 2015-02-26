@@ -1,5 +1,11 @@
 title = "Product Management | "
 
+Router.before ( ->
+  unless Meteor.userId()
+    @redirect 'userUnauthorized'
+    do @stop
+  ), except: ['userUnauthorized', 'home', 'product', 'contact', 'product-detail']
+
 #
 # Layout Controllers
 #
@@ -34,6 +40,14 @@ ClientNoBannerWithSidebarController = ClientBaseController.extend (
 # Router mappings
 #
 Router.map ->
+
+  #
+  # Error page
+  #
+  @route 'userUnauthorized',
+    path: '/error'
+    onAfterAction: ->
+      document.title = "#{title} Error"
 
   #
   # Client pages
