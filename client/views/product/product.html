@@ -1,15 +1,14 @@
 <template id="produt" name="product">
 
-  <p class="pull-right visible-xs">
-    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-  </p>
-
   <div class="row">
     {{#each products}}
     <div class="col-xs-6 col-lg-4">
       <h2>{{name}}</h2>
       <p>{{short_desc}}</p>
-      <p><a class="btn btn-default" href="{{ pathFor 'product-detail' _id=_id}}" role="button">View details &raquo;</a></p>
+      <p>
+        <a class="btn btn-default" href="{{ pathFor 'product-detail' _id=_id }}" role="button">Details</a>
+        <a class="btn btn-default" href="{{ pathFor 'product-detail' _id=_id }}" role="button">Add to cart</a>
+        </p>
     </div><!--/.col-xs-6.col-lg-4-->
     {{/each}}
   </div><!--/row-->
