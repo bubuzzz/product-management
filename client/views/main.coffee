@@ -1,6 +1,13 @@
 Meteor.subscribe("allCategories")
 
 #
+# UI helper
+#
+UI.registerHelper 'addIndex', (all, begin) ->
+  _.map all, (val, index) -> _.extend {index: index + begin}, val
+
+
+#
 # Template controllers
 #
 Template.sidebar.helpers
@@ -9,14 +16,15 @@ Template.sidebar.helpers
 
 Template.shoppingCart.helpers
   items: ->
-    cart = Session.get 'cart'
+    cart = Session.get __CART__
 
-    console.log "cart: #{cart}"
+    console.log cart
 
     items = []
-    items = items.push value for key, value of cart
+    for key, value of cart
+      console.log value
+      items.push value
 
-    console.log items
     items
 
 
@@ -27,18 +35,18 @@ Template.product.events
     if !Meteor.userId()
       alert "You need to login"
     else
-      currentCart = Session.get 'cart'
+      currentCart = Session.get __CART__
 
       key = @_id
 
       if currentCart == undefined || currentCart[key] == undefined
         currentCart = {} if currentCart == undefined
-        currentCart[key] = id: @_id, name: @name, quantity: 0, total: @price
+        currentCart[key] = id: @_id, name: @name, quantity: 1, total: @price
       else
           oldItem = currentCart[key]
           oldItem.quantity = oldItem.quantity + 1
           currentCart[key] = oldItem
 
-      Session.set 'cart', currentCart
+      Session.set __CART__, currentCart
 
       return
