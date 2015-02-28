@@ -16,3 +16,8 @@ Category._collection.allow
     true
   remove: ->
     true
+
+
+Cart._collection.allow
+  insert: (userId, cart) ->
+    userId == cart.createdBy
