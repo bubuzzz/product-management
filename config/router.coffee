@@ -108,7 +108,7 @@ Router.map ->
     data: ->
       {contactSelected: 'active'}
 
-  @route 'cart',
+  @route 'shoppingCart',
     path: '/cart'
     controller: ClientNoBannerWithSidebarController
     onAfterAction: ->

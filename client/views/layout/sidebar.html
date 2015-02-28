@@ -2,13 +2,20 @@
   {{# if currentUser}}
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="shopping-cart">
       <div class="list-group">
-        <a href="#" class="list-group-item shopping-cart">
+        <span class="list-group-item shopping-cart">
           <h4 class="list-group-item-heading">Your current cart</h4>
           <p class="list-group-item-text">
-            Item: 0
-            Total Price: 0$
+            Item <span class="badge pull-right">0</span>
           </p>
-        </a>
+
+          <p class="list-group-item-text">
+            Total Price  <span class="badge pull-right">0</span>
+          </p>
+
+          <a href="{{ pathFor 'shoppingCart' }}" class="shopping-cart-btn btn btn-info">Go to cart</a>
+          <a href="#" class="checkout-btn btn btn-primary">Check out</a>
+
+        </span>
       </div>
     </div>
   {{/if}}
