@@ -14,6 +14,19 @@ Template.sidebar.helpers
   categories: ->
     Category.find({})
 
+  cartInfo: ->
+    cart = Session.get __CART__
+
+    if cart?
+      item = 0
+      for key, value of cart
+        item++
+
+      {item: item, total: 0}
+    else
+      {item: 0, total: 0}
+
+
 Template.shoppingCart.helpers
   items: ->
     cart = Session.get __CART__
@@ -22,11 +35,9 @@ Template.shoppingCart.helpers
 
     items = []
     for key, value of cart
-      console.log value
       items.push value
 
     items
-
 
 Template.product.events
   'click .btn-add-to-cart': (event) ->
@@ -39,8 +50,8 @@ Template.product.events
 
       key = @_id
 
-      if currentCart == undefined || currentCart[key] == undefined
-        currentCart = {} if currentCart == undefined
+      if !currentCart? or !currentCart[key]?
+        currentCart = {} if !currentCart?
         currentCart[key] = id: @_id, name: @name, quantity: 1, total: @price
       else
           oldItem = currentCart[key]

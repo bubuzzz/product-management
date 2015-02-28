@@ -1,4 +1,5 @@
 #
 # Constants
 #
-@__CART__ = 'cart'
+@__CART__                         = 'cart'
+@__TITLE__                        = 'Product Management | '

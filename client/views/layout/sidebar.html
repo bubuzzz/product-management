@@ -5,11 +5,11 @@
         <span class="list-group-item shopping-cart">
           <h4 class="list-group-item-heading">Your current cart</h4>
           <p class="list-group-item-text">
-            Item <span class="badge pull-right">0</span>
+            Item <span class="badge pull-right">{{cartInfo.item}}</span>
           </p>
 
           <p class="list-group-item-text">
-            Total Price  <span class="badge pull-right">0</span>
+            Total Price  <span class="badge pull-right">{{cartInfo.total}}</span>
           </p>
 
           <a href="{{ pathFor 'shoppingCart' }}" class="shopping-cart-btn btn btn-info">Go to cart</a>

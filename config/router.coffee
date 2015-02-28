@@ -1,5 +1,6 @@
-title = "Product Management | "
-
+#
+# Authorization
+#
 Router.before ( ->
   if  !Meteor.userId()
     @redirect 'userUnauthorized'
@@ -49,7 +50,7 @@ Router.map ->
   @route 'userUnauthorized',
     path: '/error'
     onAfterAction: ->
-      document.title = "#{title} Error"
+      document.title = "#{__TITLE__} Error"
 
   #
   # Client pages
@@ -58,7 +59,7 @@ Router.map ->
     path: '/'
     controller: ClientBannerWithSidebarController
     onAfterAction: ->
-      document.title = "#{title} Home Page"
+      document.title = "#{__TITLE__} Home Page"
     data: -> {
       homeSelected: 'active',
       products: Product.find {}
@@ -68,7 +69,7 @@ Router.map ->
     path: "/product/category/:_category"
     controller: ClientNoBannerWithSidebarController
     onAfterAction: ->
-      document.title = "#{title} Product"
+      document.title = "#{__TITLE__} Product"
     data: ->
       products = undefined
 
@@ -86,7 +87,7 @@ Router.map ->
     path: '/product/detail/:_id'
     controller:ClientNoBannerWithSidebarController
     onAfterAction: ->
-      document.title = "#{title} Product detail"
+      document.title = "#{__TITLE__} Product detail"
     data: -> {
       productSelected: 'active'
       product: Product.first({_id: @params._id})
@@ -96,7 +97,7 @@ Router.map ->
     path: '/about'
     controller: ClientBaseController
     onAfterAction: ->
-      document.title = "#{title} About Us"
+      document.title = "#{__TITLE__} About Us"
     data: ->
       {aboutSelected: 'active'}
 
@@ -104,7 +105,7 @@ Router.map ->
     path: '/contact'
     controller: ClientBaseController
     onAfterAction: ->
-      document.title = "#{title} Contact Us"
+      document.title = "#{__TITLE__} Contact Us"
     data: ->
       {contactSelected: 'active'}
 
@@ -112,7 +113,9 @@ Router.map ->
     path: '/cart'
     controller: ClientNoBannerWithSidebarController
     onAfterAction: ->
-      document.title = "#{title} Your Cart"
+      document.title = "#{__TITLE__} Your Cart"
+    data: ->
+      {productSelected: 'active'}
 
   #
   # Admin pages
@@ -120,34 +123,34 @@ Router.map ->
   @route 'admin-login',
     path: '/admin/login'
     onAfterAction: ->
-      document.title = "#{title} Login"
+      document.title = "#{__TITLE__} Login"
 
   @route 'admin-dashboard',
     path: '/admin'
     controller: AdminBaseController
     onAfterAction: ->
-      document.title = "#{title} Dashboard"
+      document.title = "#{__TITLE__} Dashboard"
 
   @route 'admin-product',
     path: '/admin/product'
     controller: AdminBaseController
     onAfterAction: ->
-      document.title = "#{title} Product Management"
+      document.title = "#{__TITLE__} Product Management"
 
   @route 'admin-add-product',
     path: '/admin/product/add'
     controller: AdminBaseController
     onAfterAction: ->
-      document.title = "#{title} Add Product"
+      document.title = "#{__TITLE__} Add Product"
 
   @route 'admin-category',
     path: '/admin/category'
     controller: AdminBaseController
     onAfterAction: ->
-      document.title = "#{title} Category Management"
+      document.title = "#{__TITLE__} Category Management"
 
   @route 'admin-add-category',
     path: '/admin/category/add'
     controller: AdminBaseController
     onAfterAction: ->
-      document.title = "#{title} Add Category"
+      document.title = "#{__TITLE__} Add Category"
