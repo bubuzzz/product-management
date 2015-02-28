@@ -6,7 +6,6 @@ Meteor.subscribe("allCategories")
 UI.registerHelper 'addIndex', (all, begin) ->
   _.map all, (val, index) -> _.extend {index: index + begin}, val
 
-
 #
 # Template controllers
 #
@@ -61,3 +60,5 @@ Template.product.events
       Session.set __CART__, currentCart
 
       return
+
+

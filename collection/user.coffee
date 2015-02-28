@@ -8,4 +8,4 @@ class @User extends Minimongoid
 
   @current: ->
     if Meteor.userId()
-      Author.init Meteor.user()
+      User.init Meteor.user()
