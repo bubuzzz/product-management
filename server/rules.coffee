@@ -21,3 +21,19 @@ Category._collection.allow
 Cart._collection.allow
   insert: (userId, cart) ->
     userId == cart.createdBy
+
+  update: (userId, cart) ->
+    userId == cart.createdBy
+
+  remove: (userId, cart) ->
+    userId == cart.createdBy
+
+CartItem._collection.allow
+  insert: (userId, cartItem) ->
+    userId?
+
+  update: (userId, cartItem) ->
+    userId?
+
+  remove: (userId, cartItem) ->
+    userId?

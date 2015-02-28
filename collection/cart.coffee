@@ -4,7 +4,10 @@ class @Cart extends Minimongoid
   @belongs_to: [
     name: 'user', identifier: "user_id"
   ]
-  
+
   @has_many: [
     name: 'cartItems', foreign_key: 'cart_id'
   ]
+
+  @defaults:
+    createdAt: Date()

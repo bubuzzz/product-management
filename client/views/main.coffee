@@ -4,14 +4,14 @@ Meteor.subscribe("allCategories")
 # UI helper
 #
 UI.registerHelper 'addIndex', (all, begin) ->
-  _.map all, (val, index) -> _.extend {index: index + begin}, val
+  _.map all, (val, index) -> _.extend index: index + begin, val
 
 #
 # Template controllers
 #
 Template.sidebar.helpers
   categories: ->
-    Category.find({})
+    Category.find {}
 
   cartInfo: ->
     cart = Session.get __CART__
@@ -49,6 +49,13 @@ Template.product.events
 
       key = @_id
 
+      cartCount = Cart.find(user_id: Meteor.userId()).count()
+      console.log cartCount
+
+      if cartCount == 0
+        cartId = Cart.insert user_id: Meteor.userId()
+        console.log cartId
+
       if !currentCart? or !currentCart[key]?
         currentCart = {} if !currentCart?
         currentCart[key] = id: @_id, name: @name, quantity: 1, total: @price
@@ -60,5 +67,3 @@ Template.product.events
       Session.set __CART__, currentCart
 
       return
-
-
