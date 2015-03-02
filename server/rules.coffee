@@ -20,13 +20,14 @@ Category._collection.allow
 
 Cart._collection.allow
   insert: (userId, cart) ->
-    userId == cart.createdBy
+    console.log 'inserting'
+    userId?
 
   update: (userId, cart) ->
-    userId == cart.createdBy
+    userId?
 
   remove: (userId, cart) ->
-    userId == cart.createdBy
+    userId?
 
 CartItem._collection.allow
   insert: (userId, cartItem) ->
