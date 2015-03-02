@@ -52,7 +52,7 @@ Template.product.events
       cartCount = Cart.find(user_id: Meteor.userId()).count()
 
       if cartCount == 0
-        cartId = Cart.save user_id: Meteor.userId()
+        cartId = Cart.create user_id: Meteor.userId()
         console.log cartId
 
       if !currentCart? or !currentCart[key]?
