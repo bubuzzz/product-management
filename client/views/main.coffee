@@ -49,11 +49,33 @@ Template.product.events
 
       key = @_id
 
-      cartCount = Cart.find(user_id: Meteor.userId()).count()
+      cart = Cart._collection.find(user_id: Meteor.userId())
 
-      if cartCount == 0
-        cartId = Cart.create user_id: Meteor.userId()
-        console.log cartId
+      if !cart?
+        savedCart = Cart.create user_id: Meteor.userId()
+        cartItem = CartItem.create {
+          product_id: @_id
+          product_name: @name
+          quantity: 1
+          total: @price
+          cart_id: savedCart.id
+        }
+
+      else
+        currentCartItem = CartItem._collection.findOne product_id: @_id, cart_id: cart.id
+
+        if !currentCartItem?
+          currentCartItem = CartItem.create {
+            product_id: @_id
+            product_name: @name
+            quantity: 1
+            total: @price
+            cart_id: cart.id
+          }
+        else
+          currentCartItem.quantity += 1
+          currentCartItem.save
+
 
       if !currentCart? or !currentCart[key]?
         currentCart = {} if !currentCart?
