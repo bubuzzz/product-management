@@ -49,9 +49,11 @@ Template.product.events
 
       key = @_id
 
-      cart = Cart._collection.find(user_id: Meteor.userId())
+      cart = Cart._collection.findOne user_id: Meteor.userId()
 
-      if !cart?
+      console.log cart
+
+      if cart == undefined
         savedCart = Cart.create user_id: Meteor.userId()
         cartItem = CartItem.create {
           product_id: @_id
@@ -64,7 +66,7 @@ Template.product.events
       else
         currentCartItem = CartItem._collection.findOne product_id: @_id, cart_id: cart.id
 
-        if !currentCartItem?
+        if currentCartItem == undefined
           currentCartItem = CartItem.create {
             product_id: @_id
             product_name: @name
