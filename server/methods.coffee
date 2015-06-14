@@ -1,17 +1,17 @@
 Meteor.startup ->
-  user = Meteor.users.findOne email:"admin@gmail.com"
+  user = Meteor.users.findOne username:"admin"
+  console.log user
 
-  if user?
+  if !user?
     userObject =
-      username: "bubuzzz"
-      mail: "admin@gmail.com"
+      username: "admin"
+      email: "admin@gmail.com"
       password: "password"
 
     Accounts.createUser userObject
     console.log 'admin is created'
-  else
-    console.log 'admin is already created'
 
+  console.log 'good to go'
 
 Meteor.methods
   'insertProduct': (name, shortDesc, categoryId) ->

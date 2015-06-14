@@ -3,14 +3,18 @@ Meteor.subscribe 'allProducts'
 Template.adminLogin.events
   'submit form': (event) ->
     event.preventDefault()
+
     email = event.target.email.value
     password = event.target.password.value
 
-    console.log email
-    console.log password
+    user = Meteor.users.findOne email: email
+    console.log user
 
-    Meteor.loginWithPassword emailVar, passwordVar ->
-      Router.go 'admin-dashboard'
+    Meteor.loginWithPassword email, password, (error) ->
+      if error
+        console.log error
+      else
+        Router.go 'admin-dashboard'
 
 #
 # Product
