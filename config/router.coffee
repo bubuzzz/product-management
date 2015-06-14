@@ -7,7 +7,7 @@ Router.before ( ->
     do @stop
   else
     do @next
-  ), except: ['userUnauthorized', 'home', 'product', 'contact', 'about', 'product-detail']
+  ), except: ['userUnauthorized', 'home', 'product', 'contact', 'about', 'product-detail', 'admin-login']
 
 #
 # Layout Controllers

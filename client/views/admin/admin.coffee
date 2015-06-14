@@ -6,7 +6,10 @@ Template.adminLogin.events
     email = event.target.email.value
     password = event.target.password.value
 
-    if email == 'admin@gmail.com' and password == 'admin'
+    console.log email
+    console.log password
+
+    Meteor.loginWithPassword emailVar, passwordVar ->
       Router.go 'admin-dashboard'
 
 #
@@ -15,7 +18,7 @@ Template.adminLogin.events
 Template.adminProduct.helpers
   products: ->
     Product.find({})
-    
+
 Template.adminAddProduct.helpers
   categories: ->
     Category.find({})
